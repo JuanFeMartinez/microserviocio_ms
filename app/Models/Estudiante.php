@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Estudiante extends Model
+{
+    protected $table = "estudiantes";
+    protected $primaryKey = "coidgo";
+    protected $fillable =[
+        'codigo',
+        'nombres',
+        'apellidos',
+        'created_at',
+        'update_at'
+    ];
+}
