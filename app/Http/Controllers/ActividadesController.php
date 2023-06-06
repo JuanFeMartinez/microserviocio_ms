@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actividad;
 use App\Models\Estudiante;
+
 use Illuminate\Http\Request;
 
-class EstudiantesController extends Controller
+class ActividadesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,13 +31,15 @@ class EstudiantesController extends Controller
      */
     public function store(Request $request)
     {
-        $estudiante = new Estudiante();
-        $estudiante->nombres= $request->input('nombres');
-        $estudiante->apellidos = $request->input('apellidos');
-        $estudiante->coidgo = $request->input('codigo');
-        $estudiante->save();
+        $actividad = new Actividad();
+
+        $actividad->descripcion= $request->input('descripcion');
+        $actividad->nota = $request->input('nota');
+        $actividad->codigoEstudiante = $request->input('codigoEstudiante');
+        $actividad->save();
+
         return response(json_encode([
-            "data" => "Estudiante registrado"
+            "data" => "Actividad registrada"
         ]));
     }
 
@@ -47,9 +51,9 @@ class EstudiantesController extends Controller
      */
     public function show($id)
     {
-        $estudiante = Estudiante::find($id);
+        $actividad = Actividad::find($id);
         return response(json_encode([
-            "data" => $estudiante
+            "data" => $actividad
         ]));
     }
 
@@ -62,13 +66,15 @@ class EstudiantesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $estudiante = Estudiante::find($id);
-        $estudiante->nombres = $request->input('nombres');
-        $estudiante->apellidos = $request->input('apellidos');
-        $estudiante->codigo = $request->input('codigo');
-        $estudiante->save();
+        $actividad = Actividad::find($id);
+
+        $actividad->descripcion = $request->input('descripcion');
+        $actividad->nota = $request->input('nota');
+        $actividad->codigoEstudiante = $request->input('codigoEstudiante');
+        $actividad->save();
+
         return response(json_encode([
-            "data" => "Registro actualizado"
+            "data" => "Actividad actualizada"
         ]));
     }
 
@@ -80,13 +86,13 @@ class EstudiantesController extends Controller
      */
     public function destroy($id)
     {
-        $usuario = Usuario::find($id);
-        if (empty($usuario)) {
+        $actividad = Actividad::find($id);
+        if (empty($actividad)) {
             return response(json_encode([
-                "data" => "El usuario no existe"
+                "data" => "la actividad no existe"
             ]), 404);
         }
-        $usuario->delete();
+        $actividad->delete();
         return response(json_encode([
             "data" => "Registro eliminado"
         ]));

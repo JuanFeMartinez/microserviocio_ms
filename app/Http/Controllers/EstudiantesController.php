@@ -80,15 +80,15 @@ class EstudiantesController extends Controller
      */
     public function destroy($id)
     {
-        $usuario = Usuario::find($id);
-        if (empty($usuario)) {
+        $estudiante = Estudiante::find($id);
+        if (empty($estudiante)) {
             return response(json_encode([
-                "data" => "El usuario no existe"
+                "data" => "El estudiante no existe"
             ]), 404);
         }
-        $usuario->delete();
+        $estudiante->delete();
         return response(json_encode([
-            "data" => "Registro eliminado"
+            "data" => "Estudiante eliminado"
         ]));
     }
 }
