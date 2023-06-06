@@ -16,9 +16,9 @@ class ActividadesController extends Controller
      */
     public function index()
     {
-        $estudiantes = Estudiante::all();
+        $actividades = Actividad::all();
         $data = json_encode([
-            "data" => $estudiantes
+            "data" => $actividades
         ]);
         return response($data, 200);
     }
@@ -70,7 +70,6 @@ class ActividadesController extends Controller
 
         $actividad->descripcion = $request->input('descripcion');
         $actividad->nota = $request->input('nota');
-        $actividad->codigoEstudiante = $request->input('codigoEstudiante');
         $actividad->save();
 
         return response(json_encode([

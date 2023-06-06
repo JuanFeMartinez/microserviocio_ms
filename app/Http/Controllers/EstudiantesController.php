@@ -45,9 +45,9 @@ class EstudiantesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($codigo)
     {
-        $estudiante = Estudiante::find($id);
+        $estudiante = Estudiante::find($codigo);
         return response(json_encode([
             "data" => $estudiante
         ]));
@@ -60,15 +60,14 @@ class EstudiantesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $codigo)
     {
-        $estudiante = Estudiante::find($id);
+        $estudiante = Estudiante::find($codigo);
         $estudiante->nombres = $request->input('nombres');
         $estudiante->apellidos = $request->input('apellidos');
-        $estudiante->codigo = $request->input('codigo');
         $estudiante->save();
         return response(json_encode([
-            "data" => "Registro actualizado"
+            "data" => "Estudiante actualizado"
         ]));
     }
 
@@ -78,9 +77,9 @@ class EstudiantesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($codigo)
     {
-        $estudiante = Estudiante::find($id);
+        $estudiante = Estudiante::find($codigo);
         if (empty($estudiante)) {
             return response(json_encode([
                 "data" => "El estudiante no existe"

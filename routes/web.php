@@ -17,13 +17,13 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('index', 'EstudiantesController@index');
-$router->get('actividades/{id}', 'ActividadesController@show');
-$router->get('estudiante', 'EstudiantesController@index');
-$router->get('actividad/{id}', 'ActividadesController@show');
-$router->post('create', 'EstudiantesController@store');
-$router->post('create-grade', 'ActividadesController@store');
-$router->put('actividades/update/{id}', 'AvtividadesController@update');
-//$router->put('usuarios/{id}', 'UsuarioController@update');
-$router->delete('delete/{id}', 'EstudiantesController@destroy');
-$router->delete('delete-grade/{id}', 'ActividadesController@destroy');
+$router->get('estudiantes', 'EstudianteController@index');
+$router->get('estudiantes/{codigo}', 'EstudianteController@show');
+$router->post('estudiantes', 'EstudianteController@store');
+$router->put('estudiantes/{codigo}', 'EstudianteController@update');
+$router->delete('estudiantes/{codigo}', 'EstudianteController@destroy');
+$router->get('actividades', 'ActividadController@index');
+$router->get('actividades/{id}', 'ActividadController@show');
+$router->post('actividades', 'ActividadController@store');
+$router->put('actividades/{id}', 'ActividadController@update');
+$router->delete('actividades/{id}', 'ActividadController@destroy');
